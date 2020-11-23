@@ -1,14 +1,12 @@
 <?php
-// Database configuration
-$dbHost     = "localhost";
-$dbUsername = "root";
-$dbPassword = "root";
-$dbName     = "school";
+session_start();
+$host = "localhost"; /* Host name */
+$user = "root"; /* User */
+$password = "root"; /* Password */
+$dbname = "school"; /* Database name */
 
-// Create database connection
-$db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
-
+$con = mysqli_connect($host, $user, $password,$dbname);
 // Check connection
-if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
+if (!$con) {
+  die("Connection failed: " . mysqli_connect_error());
 }
