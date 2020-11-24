@@ -33,7 +33,7 @@ if (isset($_POST['login'])) {
             $_SESSION['session_id'] = session_id();
             $_SESSION['session_user'] = $user['username'];
             
-            header('Location: dashboard.php');
+            header('Location: insert.html');
             exit;
         }
     }
