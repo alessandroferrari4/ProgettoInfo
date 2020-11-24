@@ -1,12 +1,7 @@
 <?php
-session_start();
-$host = "localhost"; /* Host name */
-$user = "root"; /* User */
-$password = "root"; /* Password */
-$dbname = "school"; /* Database name */
-
-$con = mysqli_connect($host, $user, $password,$dbname);
-// Check connection
-if (!$con) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+   define('DB_SERVER', 'localhost');
+   define('DB_USERNAME', '');
+   define('DB_PASSWORD', '');
+   define('DB_DATABASE', 'school');
+   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+?>
