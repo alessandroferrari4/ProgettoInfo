@@ -1,5 +1,5 @@
 <?php
-include("dbconfig.php");
+include('dbconfig.php');
 if(isset($_POST['save']))
 {	 
 	 $name = $_POST['namee'];
