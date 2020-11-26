@@ -1,21 +1,27 @@
 <?php
-include('dbconfig.php');
-if (isset($_POST['save'])) {
+include_once('dbconfig.php');
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['namee'];
     $surname = $_POST['surname'];
     $dob = $_POST['dob'];
     $class = $_POST['class'];
     $classroom = $_POST['classroom'];
-    $subject = $_POST['subjectt'];
+    $subject = $_POST['subject'];
+
+    $newdate = date('Y-m-d', strtotime($dob));
+
     $sql = "INSERT INTO students (namee,surname,dob,class,classroom,subjectt)
-	 VALUES ('$name','$surname','$dob','$class','$classroom','$subject')";
-    if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully !";
-    } else {
-        echo "Error: " . $sql . "
-" . mysqli_error($conn);
+     VALUES ('$name','$surname','$newdate','$class','$classroom','$subject')";
+    $sql1 = "SELECT * FROM students";
+    $result = $db->query($sql1);
+    $db->query($sql);
+    if($result->num_rows==$result+1){
+        header('location:welcome.php');
+        exit();
+    }else{
+        
     }
-    mysqli_close($conn);
+
 }
 ?>
 <!DOCTYPE html>
@@ -28,7 +34,7 @@ if (isset($_POST['save'])) {
 </head>
 
 <body>
-    <form method="post" action="php/insert.php" style="text-align: center; padding-top:100px">
+    <form method="post" action="" style="text-align: center; padding-top:100px">
         <br>Name:
         <br>
         <input type="text" name="namee">
@@ -41,7 +47,7 @@ if (isset($_POST['save'])) {
         <br> Classroom:<br>
         <input type="text" name="classroom">
         <br> Subject:<br>
-        <input type="text" name="subjectt">
+        <input type="text" name="subject">
         <br><br>
         <input type="submit" name="save" value="Submit">
     </form>
