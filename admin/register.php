@@ -7,52 +7,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hashPassword = password_hash($mypassword, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (username, passcode) values('$myusername','$hashPassword')";
-    $db->query($sql);
-    header('location:../public/login.php');
+    $sql1 = "SELECT * FROM users WHERE username = '$myusername'";
+    $result = $db->query($sql1);
+    if($result->num_rows>0){
+        $error="Username già occupato";
+    }
+    else{
+        $sql = "INSERT INTO users (username, passcode) values('$myusername','$hashPassword')";
+        $db->query($sql);
+        header('location:../public/login.php');
+        exit();
+    }
 }
 ?>
-
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-        }
-
-        label {
-            font-weight: bold;
-            width: 100px;
-            font-size: 14px;
-        }
-
-        .box {
-            border: #666666 solid 1px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/data.css">
 </head>
 
-<body bgcolor="#FFFFFF">
+<body>
 
-    <div align="center">
-        <div style="width:300px; border: solid 1px #333333; " align="left">
-            <div style="background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
+    <div class="form">
+        <div class="a-container">
+            <div class="b-container"><b>Sign Up</b></div>
 
             <div style="margin:30px">
 
                 <form action="" method="post">
                     <label>UserName:</label><input type="text" name="username" class="box" /><br /><br />
                     <label>Password:</label><input type="password" name="password" class="box" /><br /><br />
-                    <input type="submit" value=" Submit " /><br />
+                    <input type="submit" value="Sign Up" /><br />
                 </form>
 
-                <div style="font-size:11px; color:#cc0000; margin-top:10px">
+                <div class="error">
                     <?php echo $error; ?>
                 </div>
 
