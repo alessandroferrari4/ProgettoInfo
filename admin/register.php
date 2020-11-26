@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $hashPassword = password_hash($mypassword, PASSWORD_DEFAULT);
 
-    $sql1 = "SELECT * FROM users WHERE username = '$myusername'";
+    $sql1 = "SELECT username FROM users WHERE username = '$myusername'";
     $result = $db->query($sql1);
     if($result->num_rows>0){
         $error="Username già occupato";
