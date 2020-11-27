@@ -66,7 +66,6 @@ include_once('session.php');
                 $sql = "SELECT * FROM students";
                 $result = $db->query($sql);
                 while ($row = $result->fetch_assoc()) {
-                    $row = $result->fetch_assoc();
                     echo " <tr> <th scope='row'>" . $row['id'] . "</th>";
                     echo "<td>" . $row['firstname'] . "</td>";
                     echo "<td>" . $row['lastname'] . "</td>";
