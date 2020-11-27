@@ -1,3 +1,11 @@
+<?php
+session_start();
+include_once('session.php');
+?>
+
+
+
+
 <html>
 
 <head>
@@ -31,7 +39,7 @@
                         Manage Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="../index.html">Sign Out</a>
+                        <a class="dropdown-item" href="logout.php">Sign Out</a>
                         <a class="dropdown-item" href="register.php">Sign Up</a>
                     </div>
                 </li>
