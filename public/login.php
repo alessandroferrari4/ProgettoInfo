@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('../admin/dbconfig.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -7,19 +8,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = "SELECT * FROM users WHERE username = '$myusername'";
     $result = $db->query($sql);
-    if($result->num_rows>0){
-        $row=$result->fetch_assoc();
-        if(password_verify($mypassword,$row['passcode'])){
-                header("location:../admin/welcome.php");
-                exit();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (password_verify($mypassword, $row['passcode'])) {
+            $_SESSION['login_user'] = $myusername;
+            header("location:../admin/welcome.php");
+            exit();
+        } else {
+            $error = "Password sbagliata";
         }
-        else{
-            $error="Password sbagliata";
-        }
-    }else{
-        $error="Username o password sbagliati";
-        }
+    } else {
+        $error = "Username o password sbagliati";
     }
+}
 
 ?>
 <html>
