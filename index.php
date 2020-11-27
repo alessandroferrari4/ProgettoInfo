@@ -54,7 +54,6 @@ include_once('admin/dbconfig.php');
                 $sql = "SELECT * FROM students";
                 $result = $db->query($sql);
                 while ($row = $result->fetch_assoc()) {
-                    $row = $result->fetch_assoc();
                     echo " <tr> <th scope='row'>" . $row['firstname'] . "</th>";
                     echo "<td>" . $row['lastname'] . "</td>";
                     echo "<td>" . $row['gender'] . "</td>";
