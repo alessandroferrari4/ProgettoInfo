@@ -1,5 +1,10 @@
 <?php
+session_start();
 include_once('dbconfig.php');
+include_once('session.php');
+if(!isset($_SESSION['login_user'])){
+    header('location:../index.html');
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -18,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql1 = "SELECT ssn FROM students WHERE ssn = '$ssn'";
     $result = $db->query($sql1);
 
-    if ($result->num_rows>0) {
+    if ($result->num_rows > 0) {
         $error = 'Student already insert';
     } else {
         $db->query($sql);
@@ -48,13 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="" method="post">
                     <label>FirstName:</label><input type="text" maxlength="20" name="firstname" class="box" /><br /><br />
                     <label>LastName:</label><input type="text" name="lastname" class="box" /><br /><br />
-                    <label>DateOfBirth:</label><input type="date" name="dob" class="box"  /><br /><br />
-                    <label>Gender:</label><input type="text" name="gender" maxlength="1" class="box"  /><br /><br />
-                    <label>SSN:</label><input type="text" name="ssn" maxlength="20" class="box"  /><br /><br />
-                    <label>Class:</label><input type="text" name="class" maxlength="1" class="box"  /><br /><br />
-                    <label>Section:</label><input type="text" name="section" class="box"  /><br /><br />
-                    <label>Classroom:</label><input type="text" maxlength="10" name="classroom" class="box"  /><br /><br />
-                    <label>Specialization:</label><input type="text" maxlength="30" name="specialization" class="box"  /><br /><br />
+                    <label>DateOfBirth:</label><input type="date" name="dob" class="box" /><br /><br />
+                    <label>Gender:</label><input type="text" name="gender" maxlength="1" class="box" /><br /><br />
+                    <label>SSN:</label><input type="text" name="ssn" maxlength="20" class="box" /><br /><br />
+                    <label>Class:</label><input type="text" name="class" maxlength="1" class="box" /><br /><br />
+                    <label>Section:</label><input type="text" name="section" class="box" /><br /><br />
+                    <label>Classroom:</label><input type="text" maxlength="10" name="classroom" class="box" /><br /><br />
+                    <label>Specialization:</label><input type="text" maxlength="30" name="specialization" class="box" /><br /><br />
                     <input type="submit" value="Insert" /><br />
                 </form>
 
