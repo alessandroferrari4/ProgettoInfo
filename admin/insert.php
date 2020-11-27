@@ -51,9 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>FirstName:</label><input type="text" maxlength="20" name="firstname" class="box" /><br /><br />
                     <label>LastName:</label><input type="text" name="lastname" class="box" /><br /><br />
                     <label>DateOfBirth:</label><input type="date" name="dob" class="box" /><br /><br />
-                    <label>Gender:</label><input type="text" name="gender" maxlength="1" class="box" /><br /><br />
+                    <label>Gender(M/F):</label><input type="text" name="gender" maxlength="1" class="box" /><br /><br />
                     <label>SSN:</label><input type="text" name="ssn" maxlength="20" class="box" /><br /><br />
-                    <label>Class:</label><input type="text" name="class" maxlength="1" class="box" /><br /><br />
+                    <label>Class:</label><input type="number" name="class" min="1" max="5" class="box" /><br /><br />
                     <label>Section:</label><input type="text" name="section" class="box" /><br /><br />
                     <label>Classroom:</label><input type="text" maxlength="10" name="classroom" class="box" /><br /><br />
                     <label>Specialization:</label><input type="text" maxlength="30" name="specialization" class="box" /><br /><br />
