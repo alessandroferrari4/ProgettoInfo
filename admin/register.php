@@ -1,5 +1,7 @@
 <?php
+session_start();
 include_once('dbconfig.php');
+include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $myusername = mysqli_real_escape_string($db, $_POST['username']);;
