@@ -2,9 +2,6 @@
 session_start();
 include_once('dbconfig.php');
 include_once('session.php');
-if(!isset($_SESSION['login_user'])){
-    header('location:../index.html');
-}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
