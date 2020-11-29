@@ -1,5 +1,5 @@
 <?php
-include_once('admin/dbconfig.php');
+include_once('dbconfig.php');
 ?>
 <!DOCTYPE html>
 <html>
