@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once('dbconfig.php');
 include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -28,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" href="../css/data.css">
+    <link rel="stylesheet" href="../css/styleS.css">
 </head>
 
 <body>
