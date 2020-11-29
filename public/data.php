@@ -1,5 +1,5 @@
 <?php
-include_once('../admin/dbconfig.php');
+include_once('dbconfig.php');
 
 $sql = "SELECT specialization FROM students WHERE specialization = 'Informatica'";
 $result = $db->query($sql);
