@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once('dbconfig.php');
 include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST['firstname'];
@@ -28,13 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+
 ?>
 <html>
 
 <head>
 
     <title>Login Page</title>
-    <link rel="stylesheet" href="../css/data.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 
 </head>
