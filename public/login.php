@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../admin/dbconfig.php');
+include_once('dbconfig.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $myusername = mysqli_real_escape_string($db, $_POST['username']);
