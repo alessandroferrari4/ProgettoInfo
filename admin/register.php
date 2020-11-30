@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else{
         $sql = "INSERT INTO users (username, passcode) values('$myusername','$hashPassword')";
         $db->query($sql);
-        header('location:../public/login.php');
+        header('location:../public/login');
         exit();
     }
 }
