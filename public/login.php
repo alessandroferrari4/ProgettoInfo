@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if (password_verify($mypassword, $row['passcode'])) {
             $_SESSION['login_user'] = $myusername;
-            header("location:../admin/welcome.php");
+            header("location:../admin/welcome");
             exit();
         } else {
             $error = "Password sbagliata";
