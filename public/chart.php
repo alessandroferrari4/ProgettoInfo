@@ -1,5 +1,6 @@
 <?php
-include_once('dbconfig.php');
+include_once('../dbconfig.php');
+$result = $db->query("SELECT class,specialization FROM students");
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,21 +8,40 @@ include_once('dbconfig.php');
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-base.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/8.8.0/js/anychart-data-adapter.min.js"></script>
-    <style type="text/css">
-        html,
-        body,
-        #container {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['bar']
+        });
+        google.charts.setOnLoadCallback(drawChart());
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['class', 'specialization'],
+
+                <?php
+                if(mysqli_num_rows($result) > 0){
+                    while($row = mysqli_fetch_array($result)){
+                        echo "['".$row['class']."', '".$row['specialization']."']],";
+                    }
+                }
+                ?>
+            ]);
+
+            var options = {
+                chart: {
+                    title: 'Students',
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
         }
-    </style>
+    </script>
 </head>
 
 <body>
@@ -32,16 +52,6 @@ include_once('dbconfig.php');
         </button>
     </nav>
 
-    <div id="container"></div>
-
-    <script>
-        anychart.onDocumentReady(function() {
-            anychart.data.loadJsonFile("data.php", function(data) {
-                chart = anychart.bar(data);
-                chart.container("container");
-                chart.draw();
-            });
-        });
-    </script>
+    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
 
 </body>
