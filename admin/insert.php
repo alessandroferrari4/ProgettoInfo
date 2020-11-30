@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = 'Student already insert';
     } else {
         $db->query($sql);
-        header('location:welcome.php');
+        header('location:welcome');
         exit();
     }
 }
@@ -48,15 +48,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div style="margin:30px">
 
                 <form action="" method="post">
-                    <label>FirstName:</label><input type="text" maxlength="20" name="firstname" class="box" /><br /><br />
-                    <label>LastName:</label><input type="text" name="lastname" class="box" /><br /><br />
-                    <label>DateOfBirth:</label><input type="date" name="dob" class="box" /><br /><br />
-                    <label>Gender(M/F):</label><input type="text" name="gender" maxlength="1" class="box" /><br /><br />
-                    <label>SSN:</label><input type="text" name="ssn" maxlength="20" class="box" /><br /><br />
-                    <label>Class:</label><input type="number" name="class" min="1" max="5" class="box" /><br /><br />
-                    <label>Section:</label><input type="text" name="section" class="box" /><br /><br />
-                    <label>Classroom:</label><input type="text" maxlength="10" name="classroom" class="box" /><br /><br />
-                    <label>Specialization:</label><input type="text" maxlength="30" name="specialization" class="box" /><br /><br />
+                    <label>FirstName:</label><input type="text" maxlength="20" name="firstname" required="" class="box" /><br /><br />
+                    <label>LastName:</label><input type="text" name="lastname" required=""  class="box" /><br /><br />
+                    <label>DateOfBirth:</label><input type="date" name="dob" required="" class="box" /><br /><br />
+                    <label>Gender(M/F):</label><input type="text" name="gender" maxlength="1" required=""  class="box" /><br /><br />
+                    <label>SSN:</label><input type="text" name="ssn" maxlength="20" required="" class="box" /><br /><br />
+                    <label>Class:</label><input type="number" name="class" min="1" max="5" required="" class="box" /><br /><br />
+                    <label>Section:</label><input type="text" name="section" required="" class="box" /><br /><br />
+                    <label>Classroom:</label><input type="text" maxlength="10" name="classroom" required="" class="box" /><br /><br />
+                    <label>Specialization:</label><input type="text" maxlength="30" name="specialization" required="" class="box" /><br /><br />
                     <input type="submit" value="Insert" /><br />
                 </form>
 
