@@ -14,6 +14,7 @@ include_once('session.php');
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script defer src="../js/table.js"></script>
 </head>
 
 <body>
@@ -26,8 +27,14 @@ include_once('session.php');
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="insert.php">Insert</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Manage Students
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="insert">Insert</a>
+                        <a class="dropdown-item" href="delete">Delete</a>
+                    </div>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -82,11 +89,4 @@ include_once('session.php');
     </div>
 
 </body>
-
-<script>
-    $(document).ready(function() {
-        $('#students').dataTable();
-    });
-</script>
-
 </html>
