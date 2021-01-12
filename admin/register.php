@@ -20,6 +20,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstname1 = $_POST['firstname'];
+    $lastname1 = $_POST['lastname'];
+    $dob1 = $_POST['dob'];
+    $gender1 = $_POST['gender'];
+    $ssn1 = $_POST['ssn'];
+    $class1 = $_POST['class'];
+    $section1 = $_POST['section'];
+    $classroom1 = $_POST['classroom'];
+    $specialization1 = $_POST['specialization'];
+
+    $newdate = date('Y-m-d', strtotime($dob1));
+
+    $sql = "UPDATE students SET firstname='$firstname1',lastname='$lastname1',dob='$newdate1',gender='$gender1',ssn='$ssn1',class='$class1',section='$section1',classroom='$classroom1',specialization='$specialization1' WHERE id='$id1'";
+
+    if ($id) {
+        $db->query($sql);
+        header('location:welcome');
+        exit();
+    } else {
+        $error = 'tua sorella morta';
+    }
+}
 ?>
 <html lang="en">
 
