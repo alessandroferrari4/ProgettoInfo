@@ -19,7 +19,7 @@ include_once('session.php');
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand">Registro</a>
+        <a class="navbar-brand">E-Register</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,6 +33,7 @@ include_once('session.php');
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="insert">Insert</a>
+                        <a class="dropdown-item" href="modify">Modify</a>
                         <a class="dropdown-item" href="delete">Delete</a>
                     </div>
                 </li>
@@ -42,8 +43,8 @@ include_once('session.php');
                         Manage Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="logout.php">Sign Out</a>
-                        <a class="dropdown-item" href="register.php">Sign Up</a>
+                        <a class="dropdown-item" href="logout">Sign Out</a>
+                        <a class="dropdown-item" href="register">Sign Up</a>
                     </div>
                 </li>
             </ul>
