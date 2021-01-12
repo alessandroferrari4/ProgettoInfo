@@ -3,7 +3,6 @@ session_start();
 include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
-
     $sql = "DELETE FROM students WHERE id = '$id'";
     $sql1 = "SELECT id FROM students WHERE id = '$id'";
     $result = $db->query($sql1);
@@ -38,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <form action="" method="post">
                     <label>Id:</label><input type="number" name="id" min="1" required="" class="box" /><br /><br />
-                    <input type="submit" value="Insert" /><br />
+                    <input type="submit" value="Delete" /><br />
                 </form>
 
                 <div class="error">
