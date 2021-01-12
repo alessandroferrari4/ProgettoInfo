@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 
-    <title>Login Page</title>
+    <title>Insert Students</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="form" style="padding-top: 80px;">
         <div class="a-container">
-            <div class="b-container"><b>Login</b></div>
+            <div class="b-container"><b>Insert Students</b></div>
 
             <div style="margin:30px">
 
