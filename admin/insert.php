@@ -2,6 +2,7 @@
 session_start();
 include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $dob = $_POST['dob'];
@@ -12,17 +13,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $classroom = $_POST['classroom'];
     $specialization = $_POST['specialization'];
 
-    $newdate = date('Y-m-d', strtotime($dob));
+    /*$newdate = date('Y-m-d', strtotime($dob));*/
 
-    $sql = "INSERT INTO students (firstname,lastname,dob,gender,ssn,class,section,classroom,specialization)
-    VALUES ('$firstname','$lastname','$newdate','$gender','$ssn','$class','$section','$classroom','$specialization')";
+    $stmt = $db->prepare("INSERT INTO students (firstname,lastname,dob,gender,ssn,class,section,classroom,specialization) VALUES(?,?,?,?,?,?,?,?,?)");
+
     $sql1 = "SELECT ssn FROM students WHERE ssn = '$ssn'";
     $result = $db->query($sql1);
 
-    if ($result->num_rows > 0) {
+    if ($result) {
         $error = 'Student already insert';
     } else {
-        $db->query($sql);
+        $stmt->bind_param("sssssisss", $firstname, $lastname, $dob, $gender, $ssn, $class, $section, $classroom, $specialization);
+        $stmt->execute();
         header('location:welcome');
         exit();
     }
@@ -49,9 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <form action="" method="post">
                     <label>FirstName:</label><input type="text" maxlength="20" name="firstname" required="" class="box" /><br /><br />
-                    <label>LastName:</label><input type="text" name="lastname" required=""  class="box" /><br /><br />
+                    <label>LastName:</label><input type="text" name="lastname" required="" class="box" /><br /><br />
                     <label>DateOfBirth:</label><input type="date" name="dob" required="" class="box" /><br /><br />
-                    <label>Gender(M/F):</label><input type="text" name="gender" maxlength="1" required=""  class="box" /><br /><br />
+                    <label>Gender(M/F):</label><input type="text" name="gender" maxlength="1" required="" class="box" /><br /><br />
                     <label>SSN:</label><input type="text" name="ssn" maxlength="20" required="" class="box" /><br /><br />
                     <label>Class:</label><input type="number" name="class" min="1" max="5" required="" class="box" /><br /><br />
                     <label>Section:</label><input type="text" name="section" required="" class="box" /><br /><br />
