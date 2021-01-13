@@ -3,22 +3,24 @@ session_start();
 include_once('../dbconfig.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $myusername = mysqli_real_escape_string($db, $_POST['username']);
-    $mypassword = mysqli_real_escape_string($db, $_POST['password']);
+    $myusername = $_POST['username'];
+    $mypassword = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE username = '$myusername'";
-    $result = $db->query($sql);
-    if ($result->num_rows > 0) {
+    $stmt = $db->prepare("SELECT * FROM users WHERE username=?");
+    $stmt->bind_param("s", $myusername);
+    $result = $stmt->execute();
+    $stmt->close();
+
+    if ($result) {
+        $result = $db->query("SELECT passcode FROM users WHERE username='$myusername'");
         $row = $result->fetch_assoc();
         if (password_verify($mypassword, $row['passcode'])) {
             $_SESSION['login_user'] = $myusername;
             header("location:../admin/welcome");
             exit();
         } else {
-            $error = "Password sbagliata";
+            $error = "Wrong username or password!";
         }
-    } else {
-        $error = "Username o password sbagliati";
     }
 }
 
