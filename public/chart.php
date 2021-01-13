@@ -20,12 +20,11 @@ $result = $db->query("SELECT class,specialization FROM students");
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['class', 'specialization'],
-
+                ['class', 'section'],
                 <?php
                 if(mysqli_num_rows($result) > 0){
                     while($row = mysqli_fetch_array($result)){
-                        echo "['".$row['class']."', '".$row['specialization']."']],";
+                        echo "['".$row['class']."', '".$row['section']."'],";
                     }
                 }
                 ?>
@@ -44,7 +43,7 @@ $result = $db->query("SELECT class,specialization FROM students");
     </script>
 </head>
 
-<body>
+<body onload="drawChart()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand">E-Register</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +51,6 @@ $result = $db->query("SELECT class,specialization FROM students");
         </button>
     </nav>
 
-    <div id="columnchart_material" style="width: 800px; height: 500px;"></div>
+    <div id="columnchart_material" style="width: 1900px; height: 850px;"></div>
 
 </body>
