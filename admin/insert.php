@@ -13,18 +13,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $classroom = $_POST['classroom'];
     $specialization = $_POST['specialization'];
 
-    /*$newdate = date('Y-m-d', strtotime($dob));*/
+    $stmt = $db->prepare("SELECT ssn FROM students WHERE ssn=?");
+    $stmt->bind_param("s", $ssn);
+    $result = $stmt->execute();
+    $stmt->close();
 
     $stmt = $db->prepare("INSERT INTO students (firstname,lastname,dob,gender,ssn,class,section,classroom,specialization) VALUES(?,?,?,?,?,?,?,?,?)");
-
-    $sql1 = "SELECT ssn FROM students WHERE ssn = '$ssn'";
-    $result = $db->query($sql1);
 
     if ($result) {
         $error = 'Student already insert';
     } else {
         $stmt->bind_param("sssssisss", $firstname, $lastname, $dob, $gender, $ssn, $class, $section, $classroom, $specialization);
         $stmt->execute();
+        $stmt->close();
         header('location:welcome');
         exit();
     }
