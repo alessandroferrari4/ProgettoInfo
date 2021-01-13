@@ -5,10 +5,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_POST['select'])) {
         $id = $_POST['id'];
-        $sql = "SELECT * FROM students WHERE id='$id'";
-        $result = $db->query($sql);
-        if ($result->num_rows > 0) {
+        $stmt = $db->prepare("SELECT * FROM students WHERE id=?");
+        $stmt->bind_param("i", $id);
+        $result = $stmt->execute();
+        $stmt->close();
+        if ($result) {
             $_SESSION['id'] = $id;
+            $sql = "SELECT * FROM students WHERE id='$id'";
             $result = $db->query($sql);
             while ($row = $result->fetch_assoc()) {
                 $firstname = $row['firstname'];
@@ -34,8 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $section1 = $_POST['section'];
         $classroom1 = $_POST['classroom'];
         $specialization1 = $_POST['specialization'];
-        $sql1 = "UPDATE students SET firstname='$firstname1',lastname='$lastname1',dob='$dob1',gender='$gender1',ssn='$ssn1',class='$class1',section='$section1',classroom='$classroom1',specialization='$specialization1' WHERE id=" . $_SESSION['id'];
-        if ($db->query($sql1) == true) {
+        $stmt = $db->prepare("UPDATE students SET firstname=?,lastname=?,dob=?,gender=?,ssn=?,section=?,classroom=?,specialization=?,class=? WHERE id=?");
+        $stmt->bind_param("ssssssssii", $firstname1, $lastname1, $dob1, $gender1, $ssn1, $section1, $classroom1, $specialization1, $class1, $_SESSION['id']);
+        $result = $stmt->execute();
+        $stmt->close();
+        if ($result) {
             header('location:welcome');
             exit();
         } else
