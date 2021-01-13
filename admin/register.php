@@ -13,10 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->execute();
     if ($result) {
         $error = "Username già occupato";
+        $stmt->close();
     } else {
         $stmt = $db->prepare("INSERT INTO users (username,passcode) VALUES(?,?)");
         $stmt->bind_param("ss", $myusername, $hashPassword);
         $stmt->execute();
+        $stmt->close();
         header('location:../public/login');
         exit();
     }
