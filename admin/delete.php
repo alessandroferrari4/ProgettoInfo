@@ -2,20 +2,24 @@
 session_start();
 include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $sql = "DELETE FROM students WHERE id = '$id'";
-    $sql1 = "SELECT id FROM students WHERE id = '$id'";
-    $result = $db->query($sql1);
 
-    if ($result->num_rows > 0) {
-        $db->query($sql);
+    $id = $_POST['id'];
+    $stmt = $db->prepare("SELECT id FROM students WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $result = $stmt->execute();
+
+    if ($result) {
+        $stmt->close();
+        $stmt = $db->prepare("DELETE FROM students WHERE id=?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
         header('location:welcome');
         exit();
     } else {
        $error = "The student doesn't exist";
     }
 }
-
 ?>
 <html>
 
