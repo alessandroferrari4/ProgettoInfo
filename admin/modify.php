@@ -2,14 +2,15 @@
 session_start();
 include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     if (isset($_POST['select'])) {
         $id = $_POST['id'];
         $stmt = $db->prepare("SELECT * FROM students WHERE id=?");
         $stmt->bind_param("i", $id);
-        $result = $stmt->execute();
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $numrow = $result->num_rows;
         $stmt->close();
-        if ($result) {
+        if ($numrow > 0) {
             $_SESSION['id'] = $id;
             $sql = "SELECT * FROM students WHERE id='$id'";
             $result = $db->query($sql);
@@ -63,38 +64,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-
     <div class="form" style="position:absolute; bottom:50%; left:-20%;">
         <div class="a-container">
             <div class="b-container"><b>Student Id</b></div>
-
             <div style="margin:30px">
-
                 <form action="" method="post">
                     <label>Id:</label><input type="number" name="id" min="1" class="box" /><br /><br />
                     <input type="submit" value="Select" name="select" /><br />
                 </form>
-
                 <div class="error">
                     <?php echo $error; ?>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
     <div class="form" style="padding-top: 20px;">
         <div class="a-container">
             <div class="b-container"><b>Modify Students</b></div>
-
             <div style="margin:30px">
-
                 <form action="" method="post">
-                    <?php
-
-                    ?>
                     <label>FirstName:</label><input type="text" maxlength="20" name="firstname" class="box" value="<?php echo $firstname ?>" /><br /><br />
                     <label>LastName:</label><input type="text" name="lastname" class="box" value="<?php echo $lastname ?>" /><br /><br />
                     <label>DateOfBirth:</label><input type="date" name="dob" class="box" value="<?php echo $dob ?>" /><br /><br />
@@ -106,17 +94,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>Specialization:</label><input type="text" maxlength="30" name="specialization" class="box" value="<?php echo $specialization ?>" /><br /><br />
                     <input type="submit" value="Modify" name="modify" /><br />
                 </form>
-
                 <div class="error">
                     <?php echo $error; ?>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>
