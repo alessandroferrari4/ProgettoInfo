@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Wrong username!";
     }
 }
-
 ?>
 <html>
 
@@ -32,9 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login Page</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-
 </head>
-
 <?php
 include_once('../template/template.php');
 ?>
