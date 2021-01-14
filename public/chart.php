@@ -1,6 +1,6 @@
 <?php
 include_once('../dbconfig.php');
-$result = $db->query("SELECT class,specialization FROM students");
+$result = $db->query("SELECT COUNT(id) AS ID,specialization FROM students GROUP BY specialization ORDER BY ID");
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,22 +20,20 @@ $result = $db->query("SELECT class,specialization FROM students");
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable([
-                ['class', 'section'],
+                ['Specialization', 'Students'],
                 <?php
-                if(mysqli_num_rows($result) > 0){
-                    while($row = mysqli_fetch_array($result)){
-                        echo "['".$row['class']."', '".$row['section']."'],";
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "['" . $row['specialization'] . "', '" . $row['ID'] . "'],";
                     }
                 }
                 ?>
             ]);
-
             var options = {
                 chart: {
                     title: 'Students',
                 }
             };
-
             var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
@@ -50,7 +48,5 @@ $result = $db->query("SELECT class,specialization FROM students");
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-
     <div id="columnchart_material" style="width: 1900px; height: 850px;"></div>
-
 </body>
