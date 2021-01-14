@@ -2,7 +2,6 @@
 session_start();
 include_once('session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $dob = $_POST['dob'];
@@ -12,17 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $section = $_POST['section'];
     $classroom = $_POST['classroom'];
     $specialization = $_POST['specialization'];
-
     $stmt = $db->prepare("SELECT ssn FROM students WHERE ssn=?");
     $stmt->bind_param("s", $ssn);
-    $result = $stmt->execute();
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $numrow = $result->num_rows;
     $stmt->close();
-
-    $stmt = $db->prepare("INSERT INTO students (firstname,lastname,dob,gender,ssn,class,section,classroom,specialization) VALUES(?,?,?,?,?,?,?,?,?)");
-
-    if ($result) {
+    if ($numrow > 0) {
         $error = 'Student already insert';
     } else {
+        $stmt = $db->prepare("INSERT INTO students (firstname,lastname,dob,gender,ssn,class,section,classroom,specialization) VALUES(?,?,?,?,?,?,?,?,?)");
         $stmt->bind_param("sssssisss", $firstname, $lastname, $dob, $gender, $ssn, $class, $section, $classroom, $specialization);
         $stmt->execute();
         $stmt->close();
@@ -30,20 +28,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
-
 ?>
 <html>
 
 <head>
-
     <title>Insert Students</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-
 </head>
 
 <body>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">E-Register</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div id="columnchart_material" style="width: 1900px; height: 850px;"></div>
     <div class="form" style="padding-top: 80px;">
         <div class="a-container">
             <div class="b-container"><b>Insert Students</b></div>
@@ -62,17 +63,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>Specialization:</label><input type="text" maxlength="30" name="specialization" required="" class="box" /><br /><br />
                     <input type="submit" value="Insert" /><br />
                 </form>
-
                 <div class="error">
                     <?php echo $error; ?>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>
