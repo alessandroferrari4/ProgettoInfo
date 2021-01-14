@@ -2,6 +2,10 @@
 session_start();
 include_once('session.php');
 ?>
+
+
+
+
 <html>
 
 <head>
@@ -19,8 +23,10 @@ include_once('session.php');
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Manage Students
@@ -29,21 +35,24 @@ include_once('session.php');
                         <a class="dropdown-item" href="insert">Insert</a>
                         <a class="dropdown-item" href="modify">Modify</a>
                         <a class="dropdown-item" href="delete">Delete</a>
-                        <a class="dropdown-item" href="../public/chart">Chart</a>
                     </div>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Manage Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="logout">Sign Out</a>
-                        <a class="dropdown-item" href="register">Sign In</a>
+                        <a class="dropdown-item" href="register">Sign Up</a>
                     </div>
                 </li>
             </ul>
+
         </div>
+
     </nav>
+
     <div class="container" style="padding-top: 60px; padding-right: 90px;">
         <table id="students">
             <thead>
@@ -79,6 +88,6 @@ include_once('session.php');
             </tbody>
         </table>
     </div>
-</body>
 
+</body>
 </html>
