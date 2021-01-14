@@ -19,23 +19,17 @@ include_once('dbconfig.php');
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item">
                     <a class="nav-link" href="public/login">Login</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="public/chart">Chart</a>
                 </li>
-
             </ul>
-
         </div>
     </nav>
-
     <div class="container" style="padding-top: 100px; padding-right: 90px;">
         <table id="students">
             <thead>
@@ -49,7 +43,6 @@ include_once('dbconfig.php');
                     <th scope="col">Specialization</th>
                 </tr>
             </thead>
-
             <tbody>
                 <?php
                 $sql = "SELECT * FROM students";
@@ -66,6 +59,6 @@ include_once('dbconfig.php');
             </tbody>
         </table>
     </div>
-
 </body>
+
 </html>
