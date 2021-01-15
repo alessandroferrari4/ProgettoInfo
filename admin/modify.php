@@ -60,25 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="../js/table.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/modify.css">
 </head>
 
 <body>
-    <div class="form" style="position:absolute; bottom:50%; left:-20%;">
-        <div class="a-container">
-            <div class="b-container"><b>Student Id</b></div>
-            <div style="margin:30px">
-                <form action="" method="post">
-                    <label>Id:</label><input type="number" name="id" min="1" class="box" /><br /><br />
-                    <input type="submit" value="Select" name="select" /><br />
-                </form>
-                <div class="error">
-                    <?php echo $error; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="form" style="padding-top: 20px;">
+    <?php
+    include_once('../template/template_2.php');
+    ?>
+    <div class="form1">
         <div class="a-container">
             <div class="b-container"><b>Modify Students</b></div>
             <div style="margin:30px">
