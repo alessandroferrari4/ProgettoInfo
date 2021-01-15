@@ -12,6 +12,7 @@ $result = $db->query("SELECT COUNT(id) AS ID,specialization FROM students GROUP 
     <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="../css/chart.css">
     <script type="text/javascript">
         google.charts.load('current', {
             'packages': ['bar']
@@ -34,7 +35,7 @@ $result = $db->query("SELECT COUNT(id) AS ID,specialization FROM students GROUP 
                     title: 'Students',
                 }
             };
-            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+            var chart = new google.charts.Bar(document.getElementById('chart'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
         }
@@ -48,5 +49,5 @@ $result = $db->query("SELECT COUNT(id) AS ID,specialization FROM students GROUP 
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-    <div id="columnchart_material" style="width: 1900px; height: 850px;"></div>
+    <div id="chart"></div>
 </body>
