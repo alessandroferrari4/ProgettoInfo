@@ -38,13 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand">E-Register</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <div id="columnchart_material" style="width: 1900px; height: 850px;"></div>
     <div class="form" style="padding-top: 80px;">
         <div class="a-container">
             <div class="b-container"><b>Insert Students</b></div>
