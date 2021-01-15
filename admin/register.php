@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <?php
-include_once('../template/template.php');
+include_once('../template/template_1.php');
 ?>
 
 </html>
