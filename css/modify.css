@@ -1,0 +1,38 @@
+label {
+    font-weight: bold;
+    width: 100px;
+    font-size: 14px;
+}
+
+.box {
+    border: #666666 solid 1px;
+}
+
+.form {
+    left: 400px;
+    top: 290px;
+    padding-top: 20px;
+    position: absolute;
+}
+
+.form1 {
+    padding-left: 770px;
+    padding-top: 65px;
+}
+
+.a-container {
+    width: 300px;
+    border: solid 1px #333333;
+}
+
+.b-container {
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 3px;
+}
+
+.error {
+    font-size: 11px;
+    color: #cc0000;
+    margin-top: 10px
+}
